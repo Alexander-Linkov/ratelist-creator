@@ -7,8 +7,8 @@
     <ProjectGuid>{73D2F748-1BC3-4F75-A695-EC7CB7887457}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlaylistCreator</RootNamespace>
-    <AssemblyName>PlaylistCreator</AssemblyName>
+    <RootNamespace>RatelistCreator</RootNamespace>
+    <AssemblyName>RatelistCreator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

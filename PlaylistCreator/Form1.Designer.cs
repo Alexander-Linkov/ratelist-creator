@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace PlaylistCreator
 {
@@ -49,21 +50,29 @@ namespace PlaylistCreator
             this.btn_copyAlbum = new System.Windows.Forms.Button();
             this.devicePath = new System.Windows.Forms.TextBox();
             this.btn_skipAlbum = new System.Windows.Forms.Button();
+            this.tabAbout = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn_CancelAnalize = new System.Windows.Forms.Button();
             this.analizer = new System.ComponentModel.BackgroundWorker();
             this.FileCopier = new System.ComponentModel.BackgroundWorker();
             this.deviceFiller = new System.ComponentModel.BackgroundWorker();
+            this.BtnSelectLibraryPath = new System.Windows.Forms.Button();
+            this.LibraryFolderSelector = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel_albums.SuspendLayout();
+            this.tabAbout.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(293, 20);
+            this.textBox1.Size = new System.Drawing.Size(259, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "D:\\Music\\";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -98,6 +107,7 @@ namespace PlaylistCreator
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabAbout);
             this.tabControl1.Location = new System.Drawing.Point(12, 39);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -154,7 +164,7 @@ namespace PlaylistCreator
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(312, 173);
+            this.tabPage2.Size = new System.Drawing.Size(385, 173);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Copy Albums";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -238,6 +248,58 @@ namespace PlaylistCreator
             this.btn_skipAlbum.UseVisualStyleBackColor = true;
             this.btn_skipAlbum.Click += new System.EventHandler(this.btn_skipAlbum_Click);
             // 
+            // tabAbout
+            // 
+            this.tabAbout.Controls.Add(this.label6);
+            this.tabAbout.Controls.Add(this.label5);
+            this.tabAbout.Controls.Add(this.label4);
+            this.tabAbout.Controls.Add(this.linkLabel1);
+            this.tabAbout.Location = new System.Drawing.Point(4, 22);
+            this.tabAbout.Name = "tabAbout";
+            this.tabAbout.Size = new System.Drawing.Size(385, 173);
+            this.tabAbout.TabIndex = 2;
+            this.tabAbout.Text = "About";
+            this.tabAbout.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(146, 54);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 3;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(97, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(172, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "by Alexander \"Fill Freeman\" Linkov";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(134, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "RateList Creator";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(152, 79);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(40, 13);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "GitHub";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // btn_CancelAnalize
             // 
             this.btn_CancelAnalize.Enabled = false;
@@ -274,11 +336,22 @@ namespace PlaylistCreator
             this.deviceFiller.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.deviceFiller_ProgressChanged);
             this.deviceFiller.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.deviceFiller_RunWorkerCopleted);
             // 
+            // BtnSelectLibraryPath
+            // 
+            this.BtnSelectLibraryPath.Location = new System.Drawing.Point(277, 10);
+            this.BtnSelectLibraryPath.Name = "BtnSelectLibraryPath";
+            this.BtnSelectLibraryPath.Size = new System.Drawing.Size(28, 23);
+            this.BtnSelectLibraryPath.TabIndex = 6;
+            this.BtnSelectLibraryPath.Text = "...";
+            this.BtnSelectLibraryPath.UseVisualStyleBackColor = true;
+            this.BtnSelectLibraryPath.Click += new System.EventHandler(this.BtnSelectLibraryPath_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 295);
+            this.Controls.Add(this.BtnSelectLibraryPath);
             this.Controls.Add(this.btn_CancelAnalize);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label1);
@@ -294,6 +367,8 @@ namespace PlaylistCreator
             this.tabPage2.ResumeLayout(false);
             this.panel_albums.ResumeLayout(false);
             this.panel_albums.PerformLayout();
+            this.tabAbout.ResumeLayout(false);
+            this.tabAbout.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +404,13 @@ namespace PlaylistCreator
         private System.ComponentModel.BackgroundWorker analizer;
         private System.ComponentModel.BackgroundWorker FileCopier;
         private BackgroundWorker deviceFiller;
+        private System.Windows.Forms.Button BtnSelectLibraryPath;
+        private System.Windows.Forms.FolderBrowserDialog LibraryFolderSelector;
+        private System.Windows.Forms.TabPage tabAbout;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

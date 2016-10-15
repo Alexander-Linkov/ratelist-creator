@@ -8,15 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Reflection;
-//using TagLib;
+using TagLib;
+using System.Diagnostics;
 
 namespace PlaylistCreator
 {
     public partial class Form1 : Form
     {
-        Assembly TagLib = Assembly.Load("taglib-sharp");
-
         string LibPath = @"D:\Music"; //default library path
         List<string> albumPaths = new List<string>();
         List<string> songsFlow = new List<string>();
@@ -46,6 +44,7 @@ namespace PlaylistCreator
         public Form1()
         {
             InitializeComponent();
+            label6.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -212,34 +211,9 @@ namespace PlaylistCreator
                 bkgInd = 0;
                 flowInd = 0;
 
-
-                var fileType = TagLib.GetType("TagLib.File");
-                var createMethod = fileType.GetMethod("Create", new[] { typeof(string) });
-                Type tagTypes = TagLib.GetType("TagLib.TagTypes");
-                var getTagMethod = fileType.GetMethod("GetTag", new[] {tagTypes});
-
-                dynamic file = createMethod.Invoke(null, new[] { fi.FullName });
-
-                
-                FieldInfo Id3TagField = tagTypes.GetField("Id3v2");
-                var Id3Tag = Id3TagField.GetValue(tagTypes);
-
-                //var tag_d = file_d.GetTag(Id3TagConst);
-                var tag = getTagMethod.Invoke(file, new[] { Id3Tag });
-
-                //getting rating
-                var popFrameType = TagLib.GetType("TagLib.Id3v2.PopularimeterFrame");
-                Type tagType = TagLib.GetType("TagLib.Id3v2.Tag");
-                var getRatingMethod = popFrameType.GetMethod("Get", new[] { tagType , typeof(string), typeof(bool)});
-                dynamic Rating_d = getRatingMethod.Invoke(null, new[] {tag, "Windows Media Player 9 Series", true });
-                byte Rating = Rating_d.Rating;
-
-                /* static linking
                 TagLib.File file = TagLib.File.Create(fi.FullName);
                 TagLib.Tag tag = file.GetTag(TagTypes.Id3v2);
                 byte Rating = TagLib.Id3v2.PopularimeterFrame.Get((TagLib.Id3v2.Tag)tag, "Windows Media Player 9 Series", true).Rating;
-                */
-
     
                 switch (Rating)
                 {
@@ -565,6 +539,21 @@ namespace PlaylistCreator
         {
             progressBar1.Value = progressBar1.Maximum;
             label1.Text = e.Result + " albums have been copied";
+        }
+
+        private void BtnSelectLibraryPath_Click(object sender, EventArgs e)
+        {
+            string cur_folder = textBox1.Text;
+            if (cur_folder != "") LibraryFolderSelector.SelectedPath = cur_folder;
+            if (LibraryFolderSelector.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = LibraryFolderSelector.SelectedPath;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Alexander-Linkov/ratelist-creator");
         }
     }
 }
