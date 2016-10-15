@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+//using TagLib;
 
 namespace PlaylistCreator
 {
@@ -232,6 +233,13 @@ namespace PlaylistCreator
                 var getRatingMethod = popFrameType.GetMethod("Get", new[] { tagType , typeof(string), typeof(bool)});
                 dynamic Rating_d = getRatingMethod.Invoke(null, new[] {tag, "Windows Media Player 9 Series", true });
                 byte Rating = Rating_d.Rating;
+
+                /* static linking
+                TagLib.File file = TagLib.File.Create(fi.FullName);
+                TagLib.Tag tag = file.GetTag(TagTypes.Id3v2);
+                byte Rating = TagLib.Id3v2.PopularimeterFrame.Get((TagLib.Id3v2.Tag)tag, "Windows Media Player 9 Series", true).Rating;
+                */
+
     
                 switch (Rating)
                 {
