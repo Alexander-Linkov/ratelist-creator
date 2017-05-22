@@ -359,13 +359,14 @@ namespace PlaylistCreator
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 StreamWriter playlist = new StreamWriter(saveFileDialog1.FileName, false, Encoding.UTF8);
                 //if (File.Exists(saveFileDialog1.FileName)) File.Delete(saveFileDialog1.FileName);
-                Random rnd = new Random();
+                Random seed_random = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
                 while (tmpPlst.Count > 0)
                 {
+                    
+                    Random rnd = new Random(seed_random.Next((int)DateTime.Now.Ticks & 0x0000FFFF));
                     var curInd = rnd.Next(tmpPlst.Count);
                     playlist.WriteLine(tmpPlst[curInd]);
                     tmpPlst.RemoveAt(curInd);
-
                 }
                 playlist.Close();
                 label1.Text = "Playlist has been saved to " + saveFileDialog1.FileName;
