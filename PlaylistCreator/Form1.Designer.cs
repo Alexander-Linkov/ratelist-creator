@@ -181,7 +181,7 @@ namespace PlaylistCreator
             this.panel_albums.Enabled = false;
             this.panel_albums.Location = new System.Drawing.Point(3, 6);
             this.panel_albums.Name = "panel_albums";
-            this.panel_albums.Size = new System.Drawing.Size(303, 164);
+            this.panel_albums.Size = new System.Drawing.Size(382, 164);
             this.panel_albums.TabIndex = 5;
             // 
             // lbl_selectedAlbum
@@ -212,7 +212,7 @@ namespace PlaylistCreator
             // 
             // btn_fillWithAlbums
             // 
-            this.btn_fillWithAlbums.Location = new System.Drawing.Point(223, 138);
+            this.btn_fillWithAlbums.Location = new System.Drawing.Point(292, 138);
             this.btn_fillWithAlbums.Name = "btn_fillWithAlbums";
             this.btn_fillWithAlbums.Size = new System.Drawing.Size(75, 23);
             this.btn_fillWithAlbums.TabIndex = 4;
@@ -222,7 +222,7 @@ namespace PlaylistCreator
             // 
             // btn_copyAlbum
             // 
-            this.btn_copyAlbum.Location = new System.Drawing.Point(111, 138);
+            this.btn_copyAlbum.Location = new System.Drawing.Point(159, 138);
             this.btn_copyAlbum.Name = "btn_copyAlbum";
             this.btn_copyAlbum.Size = new System.Drawing.Size(75, 23);
             this.btn_copyAlbum.TabIndex = 3;
@@ -234,9 +234,9 @@ namespace PlaylistCreator
             // 
             this.devicePath.Location = new System.Drawing.Point(53, 4);
             this.devicePath.Name = "devicePath";
-            this.devicePath.Size = new System.Drawing.Size(247, 20);
+            this.devicePath.Size = new System.Drawing.Size(323, 20);
             this.devicePath.TabIndex = 0;
-            this.devicePath.Text = "G:\\Music";
+            this.devicePath.Text = "G:\\Music\\%year% - %album%";
             // 
             // btn_skipAlbum
             // 
@@ -266,7 +266,7 @@ namespace PlaylistCreator
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(146, 54);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 3;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -361,7 +361,7 @@ namespace PlaylistCreator
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Playlist Creator";
+            this.Text = "Ratelist Creator";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

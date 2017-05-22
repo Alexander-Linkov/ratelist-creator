@@ -213,6 +213,7 @@ namespace PlaylistCreator
 
                 TagLib.File file = TagLib.File.Create(fi.FullName);
                 TagLib.Tag tag = file.GetTag(TagTypes.Id3v2);
+
                 byte Rating = TagLib.Id3v2.PopularimeterFrame.Get((TagLib.Id3v2.Tag)tag, "Windows Media Player 9 Series", true).Rating;
     
                 switch (Rating)
@@ -393,7 +394,7 @@ namespace PlaylistCreator
             // копирует mp3 файлы из папки альбома в путь (пока абсолютный)
             DirectoryInfo curPath = new DirectoryInfo(selectedAlbum);
 
-            if (Directory.Exists(devicePath.Text.Substring(0,1)))
+            if (Directory.Exists(devicePath.Text.Substring(0,3)))
             {
                 FileCopier.RunWorkerAsync(curPath);
                 label1.Text = "Copying album...";
@@ -469,7 +470,11 @@ namespace PlaylistCreator
                 string refPath = refFilePath.Remove(refFilePath.IndexOf(file.Name)); // путь до папки относительно корня библиотеки
                 // ==== конец меры
 
-                string destPath = devicePath.Text + refPath;
+                string destPathG = getDestinationPath(file);
+
+                //string destPath = devicePath.Text + refPath;
+                string destPath = destPathG;
+
                 string fileName = file.Name;
 
                 // надо проверить наличие пути копирования. Если нет, попытаться создать. Если не получится, сказать, что копирование по выбранному пути невозможно.
@@ -555,5 +560,23 @@ namespace PlaylistCreator
         {
             Process.Start("https://github.com/Alexander-Linkov/ratelist-creator");
         }
+
+        private string getDestinationPath(FileInfo file)
+        {
+            string path = "";
+
+            TagLib.File mp3 = TagLib.File.Create(file.FullName);
+            TagLib.Tag tag = mp3.GetTag(TagTypes.Id3v2);
+
+
+            path = devicePath.Text;
+            path = path.Replace("%album%", tag.Album);
+            path = path.Replace("%artist%", tag.Performers[0]);
+            path = path.Replace("%track%", tag.Track.ToString());
+            path = path.Replace("%year%", tag.Year.ToString());
+            path = path.Replace("%title%", tag.Title);
+            return path;
+        }
+
     }
 }
